@@ -1,14 +1,14 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "crt-yt-down",
+  "version": "0.0.1",
+  "description": "A simple application to download youtube video as audio",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/electron/electron-quick-start.git"
+    "url": "https://github.com/elvispt/crt-yt-down.git"
   },
   "keywords": [
     "Electron",
@@ -16,13 +16,12 @@
     "start",
     "tutorial"
   ],
-  "author": "GitHub",
+  "author": "Elvis Pestana",
   "license": "CC0-1.0",
-  "bugs": {
-    "url": "https://github.com/electron/electron-quick-start/issues"
-  },
-  "homepage": "https://github.com/electron/electron-quick-start#readme",
   "devDependencies": {
     "electron": "^1.3.4"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.7"
   }
 }

@@ -1,38 +1,17 @@
-# electron-quick-start
+## CRT-YT-DOWN
 
-**Clone and run for a quick way to see an Electron in action.**
+This is a wrapper for the command line utility [youtube-dl](https://rg3.github.io/youtube-dl/)
 
-This is a minimal Electron application based on the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start) within the Electron documentation.
+Decided to build this as a learning project get hands on experience with Electron.
 
-**Use this app along with the [Electron API Demos](http://electron.atom.io/#get-started) app for API code examples to help you get started.**
+I'm sure you noticed but this is forked from [electron/electron-quick-start](https://github.com/electron/electron-quick-start).
 
-A basic Electron application needs just these files:
+To run this:
 
-- `package.json` - Points to the app's main file and lists its details and dependencies.
-- `main.js` - Starts the app and creates a browser window to render HTML. This is the app's **main process**.
-- `index.html` - A web page to render. This is the app's **renderer process**.
+1. Clone, duh
+2. `npm install`
+3. `npm start`
 
-You can learn more about each of these components within the [Quick Start Guide](http://electron.atom.io/docs/latest/tutorial/quick-start).
+Clone/Fork copy, do whatever you want with this. Just know that I don't take responsibility if you burn down your house or anything at all that happens due to use of this software.
 
-## To Use
-
-To clone and run this repository you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
-
-```bash
-# Clone this repository
-git clone https://github.com/electron/electron-quick-start
-# Go into the repository
-cd electron-quick-start
-# Install dependencies and run the app
-npm install && npm start
-```
-
-Learn more about Electron and its API in the [documentation](http://electron.atom.io/docs/latest).
-
-## Other Example Apps
-
-For more example apps, see the
-[list of boilerplates](http://electron.atom.io/community/#boilerplates)
-created by the awesome electron community.
-
-#### License [CC0 (Public Domain)](LICENSE.md)
+// TODO: add missing steps to make this really work

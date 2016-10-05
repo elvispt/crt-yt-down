@@ -4,30 +4,40 @@ const shelljs = require('shelljs');
 
   document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault();
-    return false;
-  });
-
-  document.querySelector('button[type="submit"]').addEventListener('click', function _submitBtnClickEvent(event) {
-    let formElements = document.querySelector('form');
-    let formValues = [];
-
     this.disabled = true;
-    for (let i = 0; i < formElements.length; i++) {
-      let el = formElements[i];
-      if (el.type !== 'submit') {
-        formValues.push({
-          name: el.getAttribute('name'),
-          value: el.type === 'checkbox' ? el.checked : el.value,
-        });
-      }
-    }
     runCommand(() => {
       this.disabled = false;
     });
   });
 
+  document.querySelector('button[type="submit"]').addEventListener('click', function _submitBtnClickEvent(event) {
+  });
+
+  /**
+   * Gets the arguments for youtube-dl
+   */
+  function getParams() {
+    return [
+      'yt-url',
+      'keep-video',
+      'yt-audio-video',
+      'yt-format',
+      'yt-audio-quality',
+      'yt-check-certificate',
+      'yt-output-path-template'
+    ].map(elId => {
+      let el = document.getElementById(elId);
+
+      if (el.type === 'checkbox') {
+        return el.checked ? el.value : '';
+      }
+      return el.value;
+    });
+  }
+
   function runCommand(doneCallback) {
-    let command = 'yt-dl\\youtube-dl.exe https://www.youtube.com/watch?v=2SIADtYPAHA --extract-audio --audio-format=mp3 --no-check-certificate -k -o output\\%(title)s-%(id)s.%(ext)s';
+    let params = getParams();
+    let command = 'yt-dl\\youtube-dl.exe ' + params.join(' ');
     const execOptions = {
       async: true,
     };
@@ -45,9 +55,13 @@ const shelljs = require('shelljs');
 
         consoleOutput.insertAdjacentHTML('beforeend', `<div><span>${ outputTime }:</span> DONE</div>`)
       } else {
-        consoleOutput.insertAdjacentHTML('beforeend', `<pre>${ code }</pre>`);
-        consoleOutput.insertAdjacentHTML('beforeend', `<pre>${ stdout }</pre>`);
-        consoleOutput.insertAdjacentHTML('beforeend', `<pre>${ stderr }</pre>`);
+        // <div class="alert alert-danger" role="alert">...</div>
+        let alertId = 'alert-' + Date.now();
+        consoleOutput.insertAdjacentHTML('beforeend', `<div id="${ 'alert-' + Date.now() }" class="alert alert-danger" role="alert"></div>`);
+        let alertEl = document.getElementById(alertId);
+        alertEl.insertAdjacentHTML('beforeend', `code: <pre>${ code }</pre>`);
+        alertEl.insertAdjacentHTML('beforeend', `stdout: <pre>${ stdout }</pre>`);
+        alertEl.insertAdjacentHTML('beforeend', `stderr: <pre>${ stderr }</pre>`);
       }
       consoleOutput.insertAdjacentHTML('beforeend', '<hr />');
       doneCallback();

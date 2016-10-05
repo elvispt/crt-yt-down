@@ -16,39 +16,40 @@
           <form>
             <div class="checkbox">
               <label>
-                <input type="checkbox" id="is-playlist" name="is-playlist" value="true"> PlayList?
-              </label>
-            </div>
-            <div class="checkbox">
-              <label>
                 <input type="checkbox" id="keep-video" name="keep-video" value="-k"> Keep video?
               </label>
             </div>
             <div class="form-group">
               <label for="yt-url">Url:</label>
-              <input type="text" class="form-control" id="yt-url" name="yt-url" placeholder="Video URL">
+              <input type="url" class="form-control" id="yt-url" name="yt-url" placeholder="Video URL" required>
             </div>
 
             <div class="form-group">
               <label for="yt-audio-video">Audio/Video</label>
-              <input type="text" class="form-control" id="yt-audio-video" name="yt-audio-video" disabled="disabled" value="--extract-audio">
+              <input type="text" class="form-control" id="yt-audio-video" name="yt-audio-video" value="--extract-audio">
             </div>
 
             <div class="form-group">
               <label for="yt-format">Audio Format</label>
-              <input type="text" class="form-control" id="yt-format" name="yt-format" disabled="disabled" value="--audio-format=mp3">
+              <input type="text" class="form-control" id="yt-format" name="yt-format" value="--audio-format=mp3">
             </div>
 
             <div class="form-group">
               <label for="yt-audio-quality">Audio Format</label>
-              <input type="text" class="form-control" id="yt-audio-quality" name="yt-audio-quality" disabled="disabled" value="--audio-quality=7">
+              <input type="text" class="form-control" id="yt-audio-quality" name="yt-audio-quality" value="--audio-quality=7">
             </div>
 
             <div class="form-group">
               <label for="yt-check-certificate">Certificate</label>
-              <input type="text" class="form-control" id="yt-check-certificate" name="yt-check-certificate" disabled="disabled" value="--no-check-certificate">
+              <input type="text" class="form-control" id="yt-check-certificate" name="yt-check-certificate" value="--no-check-certificate">
             </div>
 
+            <div class="form-group">
+              <label for="yt-output-path-template">Certificate</label>
+              <input type="text" class="form-control" id="yt-output-path-template" name="yt-output-path-template" value="-o output\\%(title)s-%(id)s.%(ext)s">
+            </div>
+
+            <button type="reset" class="btn btn-default">RESET</button>
             <button type="submit" class="btn btn-primary">GET IT!</button>
           </form>
         </div>

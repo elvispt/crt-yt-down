@@ -37,7 +37,7 @@ const shelljs = require('shelljs');
 
   function runCommand(doneCallback) {
     let params = getParams();
-    let command = 'yt-dl\\youtube-dl.exe ' + params.join(' ');
+    let command = __dirname + '\\yt-dl\\youtube-dl.exe ' + params.join(' ');
     const execOptions = {
       async: true,
     };

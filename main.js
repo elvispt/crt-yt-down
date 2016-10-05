@@ -13,7 +13,7 @@ function createWindow () {
     width: 800,
     height: 600,
     center: true,
-    icon: 'assets/volume.ico',
+    icon: __dirname + '/assets/volume.ico',
     autoHideMenuBar: true,
     defaultEncoding: 'UTF8',
   };

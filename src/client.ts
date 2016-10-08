@@ -31,30 +31,32 @@ function getParams(): string[] {
   });
 }
 
-function runCommand(doneCallback) {
-  let params: string[] = getParams();
-  let command = __dirname + '\\yt-dl\\youtube-dl.exe ' + params.join(' ');
+/**
+ * Attempts to download the item at the provided url
+ * @param doneCallback {Function} A callback function to run after download.
+ */
+function runCommand(doneCallback: Function) {
   const execOptions = {
     async: true,
   };
-  let consoleOutput = document.getElementById('console-output');
-  let commandDate = new Date();
-  let commandTime = `[${ commandDate.getHours() }:${ commandDate.getMinutes() }:${ commandDate.getSeconds() }]`;
+  let params: string[] = getParams();
+  let command: string = __dirname + '\\yt-dl\\youtube-dl.exe ' + params.join(' ');
+  let consoleOutput: HTMLElement = document.getElementById('console-output');
+  let commandDate: Date = new Date();
+  let commandTime: string = `[${ commandDate.getHours() }:${ commandDate.getMinutes() }:${ commandDate.getSeconds() }]`;
 
   consoleOutput.insertAdjacentHTML('beforeend', `<div><span>${ commandTime }</span><code>${ command }</code></div>`);
   // make the call
   let child = shelljs.exec(command, execOptions, (code, stdout, stderr) => {
     if (code === 0) {
-      let output: string = stdout.trim();
       let outputDate: Date = new Date();
       let outputTime: string = `[${ outputDate.getHours() }:${ outputDate.getMinutes() }:${ outputDate.getSeconds() }]`;
 
       consoleOutput.insertAdjacentHTML('beforeend', `<div><span>${ outputTime }:</span> DONE</div>`)
     } else {
-      // <div class="alert alert-danger" role="alert">...</div>
-      let alertId = 'alert-' + Date.now();
-      consoleOutput.insertAdjacentHTML('beforeend', `<div id="${ 'alert-' + Date.now() }" class="alert alert-danger" role="alert"></div>`);
-      let alertEl = document.getElementById(alertId);
+      const alertId: string = 'alert-' + Date.now();
+      consoleOutput.insertAdjacentHTML('beforeend', `<div id="${ alertId }" class="alert alert-danger" role="alert"></div>`);
+      const alertEl: HTMLElement = document.getElementById(alertId);
       alertEl.insertAdjacentHTML('beforeend', `code: <pre>${ code }</pre>`);
       alertEl.insertAdjacentHTML('beforeend', `stdout: <pre>${ stdout }</pre>`);
       alertEl.insertAdjacentHTML('beforeend', `stderr: <pre>${ stderr }</pre>`);
@@ -86,14 +88,15 @@ function runCommand(doneCallback) {
 }
 
 function createConsoleOverlay() {
-  const body = document.getElementsByTagName('body')[0];
-  const containerEl = document.createElement('div');
+  const body: HTMLBodyElement = document.getElementsByTagName('body')[0];
+  const containerEl: HTMLDivElement = document.createElement('div');
 
   containerEl.classList.add('console-container');
   containerEl.insertAdjacentHTML('beforeend', '<div class="panel panel-info"><div class="panel-heading">Log<button id="close-console" class="btn btn-xs btn-danger screen-overlay-close pull-right">Close</button></div><div id="console-output" class="panel-body"></div></div>');
   body.insertAdjacentHTML('beforeend', '<div class="screen-overlay"></div>');
 
-  const screenOverlay = document.getElementsByClassName('screen-overlay-close')[0];
+  const screenOverlay: HTMLElement = <HTMLElement> document.getElementsByClassName('screen-overlay-close')[0];
+  // destroy the overlay on click
   containerEl.addEventListener('click', event => {
     if (event.srcElement.classList.contains('screen-overlay-close')) {
       containerEl.remove();

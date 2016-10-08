@@ -1,6 +1,6 @@
 const shelljs = require('shelljs');
 
-(function (window) {
+(function (window: Window) {
 
   document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault();
@@ -24,7 +24,7 @@ const shelljs = require('shelljs');
       'yt-check-certificate',
       'yt-output-path-template'
     ].map(elId => {
-      let el = document.getElementById(elId);
+      let el: HTMLInputElement = <HTMLInputElement> document.getElementById(elId);
 
       if (el.type === 'checkbox') {
         return el.checked ? el.value : '';

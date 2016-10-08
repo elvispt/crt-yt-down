@@ -5,12 +5,10 @@ const shelljs = require('shelljs');
   document.querySelector('form').addEventListener('submit', (event) => {
     event.preventDefault();
     this.disabled = true;
+    createConsoleOverlay();
     runCommand(() => {
       this.disabled = false;
     });
-  });
-
-  document.querySelector('button[type="submit"]').addEventListener('click', function _submitBtnClickEvent(event) {
   });
 
   /**
@@ -87,6 +85,24 @@ const shelljs = require('shelljs');
         }
       });
     });
+  }
+
+  function createConsoleOverlay() {
+    const body = document.getElementsByTagName('body')[0];
+    const containerEl = document.createElement('div');
+
+    containerEl.classList.add('console-container');
+    containerEl.insertAdjacentHTML('beforeend', '<div class="panel panel-info"><div class="panel-heading">Log<button id="close-console" class="btn btn-xs btn-danger screen-overlay-close pull-right">Close</button></div><div id="console-output" class="panel-body"></div></div>');
+    body.insertAdjacentHTML('beforeend', '<div class="screen-overlay"></div>');
+
+    const screenOverlay = document.getElementsByClassName('screen-overlay-close')[0];
+    containerEl.addEventListener('click', event => {
+      if (event.srcElement.classList.contains('screen-overlay-close')) {
+        containerEl.remove();
+        document.getElementsByClassName('screen-overlay')[0].remove();
+      }
+    });
+    body.insertAdjacentElement('beforeend', containerEl);
   }
 
 }(window));

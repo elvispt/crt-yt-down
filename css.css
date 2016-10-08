@@ -1,4 +1,19 @@
 #console-output {
-  max-height: 200px;
   overflow-y: auto;
+}
+.screen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #424242;
+  opacity: 0.5; 
+}
+.console-container {
+  position: absolute;
+  top: 2%;
+  left: 2%;
+  right: 2%;
+  bottom: 2%;
 }
